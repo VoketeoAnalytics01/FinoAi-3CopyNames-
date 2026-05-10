@@ -14,7 +14,7 @@ import LendingDetail from './components/details/LendingDetail.tsx';
 import SmartLendBorrowScreen from './components/SmartLendBorrowScreen.tsx';
 import RiskCenterScreen from './components/RiskCenterScreen.tsx';
 import SmartTransferScreen from './components/SmartTransferScreen.tsx';
-import SmartAssistantScreen from './components/SmartAssistantScreen.tsx';
+import BorrowScreen from './components/BorrowScreen.tsx';
 import SmartToolsScreen from './components/SmartToolsScreen.tsx';
 import ProfileScreen from './components/ProfileScreen.tsx';
 import PlanningSheet from './components/PlanningSheet.tsx';
@@ -28,7 +28,7 @@ const App: React.FC = () => {
   const [hasSeenWelcome, setHasSeenWelcome] = useState(false);
   const [activeNav, setActiveNav] = useState<NavItem>(NavItem.Home);
   const [activeDetail, setActiveDetail] = useState<null | 'yield' | 'lending' | 'fees'>(null);
-  const [currentView, setCurrentView] = useState<'home' | 'lend-borrow' | 'transfer' | 'assistant' | 'lend-borrow-setup'>('home');
+  const [currentView, setCurrentView] = useState<'home' | 'lend-borrow' | 'transfer' | 'borrow' | 'lend-borrow-setup'>('home');
   const [theme, setTheme] = useState('dark');
   
   // New State for Context and Planning
@@ -63,15 +63,13 @@ const App: React.FC = () => {
     switch (activeNav) {
       case NavItem.RiskCenter:
         return <RiskCenterScreen />;
-      case NavItem.AIHub:
-        return <SmartAssistantScreen onBack={() => setActiveNav(NavItem.Home)} />;
       case NavItem.SmartTools:
         return <SmartToolsScreen />;
       case NavItem.Profile:
         return <ProfileScreen theme={theme} onThemeChange={setTheme} />;
       case NavItem.Home:
       default:
-        if (currentView === 'assistant') return <SmartAssistantScreen onBack={() => setCurrentView('home')} />;
+        if (currentView === 'borrow') return <BorrowScreen onBack={() => setCurrentView('home')} />;
         if (currentView === 'lend-borrow') return <SmartLendBorrowScreen onBack={() => setCurrentView('home')} onSetupClick={() => setCurrentView('lend-borrow-setup')} />;
         if (currentView === 'lend-borrow-setup') return <LendBorrowSetupScreen onBack={() => setCurrentView('lend-borrow')} />;
         if (currentView === 'transfer') return <SmartTransferScreen onBack={() => setCurrentView('home')} />;
@@ -92,7 +90,7 @@ const App: React.FC = () => {
                   setInterestContext('transfer');
                   setCurrentView('transfer');
                 }}
-                onAiSmartClick={() => setCurrentView('assistant')}
+                onBorrowClick={() => setCurrentView('borrow')}
               />
 
               <div className="space-y-4">

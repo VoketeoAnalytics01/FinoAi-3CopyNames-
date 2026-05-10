@@ -1,19 +1,19 @@
 
 import React from 'react';
-import { ShieldCheck, ArrowLeftRight, TrendingUp } from 'lucide-react';
+import { ShieldCheck, ArrowLeftRight, TrendingUp, HandCoins } from 'lucide-react';
 
 interface QuickActionsProps {
-  activeView?: 'transfer' | 'lend-borrow' | 'assistant' | 'home';
+  activeView?: 'transfer' | 'lend-borrow' | 'borrow' | 'home';
   onLendBorrowClick?: () => void;
   onTransferClick?: () => void;
-  onAiSmartClick?: () => void;
+  onBorrowClick?: () => void;
 }
 
 const QuickActions: React.FC<QuickActionsProps> = ({ 
   activeView,
   onLendBorrowClick, 
   onTransferClick, 
-  onAiSmartClick 
+  onBorrowClick 
 }) => {
   const getButtonStyle = (view: string) => {
     const isActive = activeView === view;
@@ -41,15 +41,15 @@ const QuickActions: React.FC<QuickActionsProps> = ({
         className={`whitespace-nowrap flex items-center gap-2 px-5 py-3 rounded-2xl font-black text-[12px] border transition-all active:scale-95 uppercase tracking-wider ${getButtonStyle('lend-borrow')}`}
       >
         <TrendingUp size={16} className={getIconColor('lend-borrow')} />
-        Smart Lend/Borrow
+        Smart Lend
       </button>
 
       <button 
-        onClick={onAiSmartClick}
-        className={`whitespace-nowrap flex items-center gap-2 px-5 py-3 rounded-2xl font-black text-[12px] border transition-all active:scale-95 uppercase tracking-wider ${getButtonStyle('assistant')}`}
+        onClick={onBorrowClick}
+        className={`whitespace-nowrap flex items-center gap-2 px-5 py-3 rounded-2xl font-black text-[12px] border transition-all active:scale-95 uppercase tracking-wider ${getButtonStyle('borrow')}`}
       >
-        <ShieldCheck size={16} className={getIconColor('assistant')} />
-        AI Smart
+        <HandCoins size={16} className={getIconColor('borrow')} />
+        Smart Borrow
       </button>
     </div>
   );

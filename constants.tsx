@@ -3,7 +3,6 @@ import { Home, LayoutGrid, FileText, Square, User } from 'lucide-react';
 
 export const NAV_ITEMS = [
   { id: 'Home', label: 'Home', icon: Home },
-  { id: 'AI Hub', label: 'AI Hub', icon: LayoutGrid },
   { id: 'Risk Center', label: 'Risk Center', icon: FileText },
   { id: 'Smart Tools', label: 'Tools', icon: Square },
   { id: 'Profile', label: 'Profile', icon: User },

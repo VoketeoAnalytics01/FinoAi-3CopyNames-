@@ -21,7 +21,6 @@ export interface RecommendationCardProps {
 
 export enum NavItem {
   Home = 'Home',
-  AIHub = 'AI Hub',
   SmartTools = 'Smart Tools',
   RiskCenter = 'Risk Center',
   Profile = 'Profile'

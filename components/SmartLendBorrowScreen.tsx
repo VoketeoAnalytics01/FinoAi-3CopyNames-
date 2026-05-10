@@ -58,18 +58,18 @@ const SmartLendBorrowScreen: React.FC<SmartLendBorrowScreenProps> = ({ onBack, o
          >
            <ArrowLeft size={10} /> BACK
          </button>
-         <h1 className="text-lg font-black tracking-tight text-white uppercase">Smart Lend/Borrow</h1>
+         <h1 className="text-lg font-black tracking-tight text-white uppercase">Smart Lend</h1>
       </header>
 
       {/* STAT CARD SECTION */}
       <section className="mb-8">
         <div className="flex justify-between items-center mb-3">
-          <span className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">STAT CARD</span>
+          <span className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">LENDING METRICS</span>
         </div>
         <div className="flex gap-3">
-          <StatCard label="Total Loans Issued" value="$12.5M" trend="4.8%" onClick={onSetupClick} />
-          <StatCard label="Active Borrowers" value="1,234" trend="3.2%" />
-          <StatCard label="Avg. Loan Term" value="24 months" trend="3.5%" />
+          <StatCard label="Total Value Locked" value="$45.2M" trend="12.4%" onClick={onSetupClick} />
+          <StatCard label="Avg. APY" value="8.5%" trend="1.2%" />
+          <StatCard label="Active Lenders" value="8,432" trend="5.1%" />
         </div>
       </section>
 
@@ -100,10 +100,10 @@ const SmartLendBorrowScreen: React.FC<SmartLendBorrowScreenProps> = ({ onBack, o
           </div>
         </div>
 
-        {/* Your Veris Chart */}
+        {/* Yield History Chart */}
         <div className="bg-[#151c2c]/40 border border-white/5 rounded-3xl p-4">
            <div className="flex justify-between items-center mb-4">
-            <span className="text-[11px] font-bold text-gray-400">Yoar Veris's</span>
+            <span className="text-[11px] font-bold text-gray-400">Yield History</span>
             <span className="text-[8px] px-2 py-0.5 bg-white/5 rounded-full text-gray-500">On Tap</span>
           </div>
           <div className="h-24 w-full">
@@ -118,26 +118,26 @@ const SmartLendBorrowScreen: React.FC<SmartLendBorrowScreenProps> = ({ onBack, o
 
       {/* MAIN ACTION BUTTON SECTION */}
       <section className="mb-8">
-        <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-4">MAIN ACTION BUTTON</h3>
+        <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-4">LENDING CONTROLS</h3>
         <div className="flex gap-3">
-          <MainActionButton label="Apply for Loan" glowColor="from-teal-500 to-emerald-500" />
-          <MainActionButton label="Check Current Rates" glowColor="from-purple-500 to-indigo-500" />
-          <MainActionButton label="Manage Your Debt" glowColor="from-blue-500 to-cyan-500" />
+          <MainActionButton label="Auto-Lend (AI)" glowColor="from-teal-500 to-emerald-500" />
+          <MainActionButton label="Manual Lend" glowColor="from-purple-500 to-indigo-500" />
+          <MainActionButton label="AI Chatbot Assist" glowColor="from-blue-500 to-cyan-500" />
         </div>
       </section>
 
       {/* ACTION CENTER SECTION */}
       <section className="mb-8">
-        <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-4">ACTION CENTER</h3>
+        <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-4">PLATFORM SELECTION</h3>
         <div className="flex gap-3">
           <button className="flex-1 bg-[#151c2c] border border-white/5 rounded-xl py-3 px-4 flex justify-between items-center text-[11px] font-bold">
-            Optimize Loan Terms <ChevronDown size={14} className="text-gray-500" />
+            Jurisdictions <ChevronDown size={14} className="text-gray-500" />
           </button>
           <button className="flex-1 bg-[#151c2c] border border-white/5 rounded-xl py-3 px-4 flex justify-between items-center text-[11px] font-bold">
-            Secure Your Borrow <ChevronDown size={14} className="text-gray-500" />
+            Preferred Platforms <ChevronDown size={14} className="text-gray-500" />
           </button>
           <div className="flex-1 border border-teal-500/30 rounded-xl py-3 px-4 flex items-center justify-center bg-teal-500/5">
-            <span className="text-[11px] font-black text-teal-400">AI Confidence: 91%</span>
+            <span className="text-[11px] font-black text-teal-400">AI Confidence: 94%</span>
           </div>
         </div>
       </section>
@@ -146,17 +146,24 @@ const SmartLendBorrowScreen: React.FC<SmartLendBorrowScreenProps> = ({ onBack, o
       <section className="mb-10">
         <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-4">AI RECOMMENDATIONS</h3>
         <div className="grid grid-cols-2 gap-4">
-          {[1, 2].map((i) => (
-            <div key={i} className="bg-[#151c2c]/40 border border-white/5 rounded-2xl p-5 relative group overflow-hidden">
-               <button className="absolute top-3 right-3 text-gray-600 hover:text-white transition-colors">
-                 <X size={14} />
-               </button>
-               <h4 className="text-sm font-black text-white mb-2">Low-Risk Borrowing</h4>
-               <p className="text-[10px] text-gray-500 font-medium leading-relaxed">
-                 Thumb-reach optimized lotty to bersdalm 24px horizontal spacings.
-               </p>
-            </div>
-          ))}
+          <div className="bg-[#151c2c]/40 border border-white/5 rounded-2xl p-5 relative group overflow-hidden">
+             <button className="absolute top-3 right-3 text-gray-600 hover:text-white transition-colors">
+               <X size={14} />
+             </button>
+             <h4 className="text-sm font-black text-white mb-2">High-Yield Stablecoins</h4>
+             <p className="text-[10px] text-gray-500 font-medium leading-relaxed">
+               Earn up to 12% APY on USDC across top-rated DeFi protocols.
+             </p>
+          </div>
+          <div className="bg-[#151c2c]/40 border border-white/5 rounded-2xl p-5 relative group overflow-hidden">
+             <button className="absolute top-3 right-3 text-gray-600 hover:text-white transition-colors">
+               <X size={14} />
+             </button>
+             <h4 className="text-sm font-black text-white mb-2">Low-Risk Staking</h4>
+             <p className="text-[10px] text-gray-500 font-medium leading-relaxed">
+               Auto-compound your ETH with institutional-grade validators.
+             </p>
+          </div>
         </div>
       </section>
     </div>
