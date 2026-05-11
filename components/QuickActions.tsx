@@ -36,9 +36,12 @@ const QuickActions: React.FC<QuickActionsProps> = ({
 
       <button 
         onClick={onRiskClick}
-        className={`whitespace-nowrap flex items-center gap-2 px-4 py-2.5 rounded-2xl font-black text-[11px] border transition-all active:scale-95 uppercase tracking-wider ${getButtonStyle('risk')}`}
+        className={`whitespace-nowrap flex items-center gap-2 px-4 py-2.5 rounded-2xl font-black text-[11px] border transition-all active:scale-95 uppercase tracking-wider relative overflow-hidden ${getButtonStyle('risk')}`}
       >
-        <ShieldCheck size={16} className={getIconColor('risk')} />
+        {activeView === 'risk' && (
+          <div className="absolute inset-0 bg-[#00f2ff]/10 animate-pulse"></div>
+        )}
+        <ShieldCheck size={16} className={`${getIconColor('risk')} ${activeView === 'risk' ? 'drop-shadow-[0_0_8px_#00f2ff] animate-pulse' : 'opacity-80'}`} />
         Risk Shield
       </button>
     </div>

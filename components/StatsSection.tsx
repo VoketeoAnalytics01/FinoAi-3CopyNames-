@@ -53,20 +53,20 @@ const StatsSection: React.FC<StatsSectionProps> = ({ onStatClick }) => {
   return (
     <div className="flex gap-3 w-full px-1">
       <StatCard 
-        label="AI Fee Saved" 
+        label="Money Saved" 
         value="$54.20" 
         icon={Sparkles} 
         onClick={() => onStatClick('fees')} 
       />
       <StatCard 
-        label="Risk Score" 
+        label="Safety Status" 
         value="Safe" 
         className="text-[#bef264]"
         icon={TrendingUp} 
         onClick={() => {}} 
       />
       <StatCard 
-        label="Protection" 
+        label="AI Protection" 
         value="Active" 
         icon={Wallet} 
         onClick={() => {}} 

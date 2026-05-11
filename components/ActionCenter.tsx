@@ -62,15 +62,15 @@ const ActionCenter: React.FC<ActionCenterProps> = ({ onAction }) => {
       id: "fees",
       title: "Fee Optimization",
       description: "AI reduction sync",
-      buttonText: "Execute",
+      buttonText: "Optimize Now",
       isPrimary: true,
       icon: <Zap className="text-[#bef264]" />
     },
     {
       id: "transfer",
-      title: "Route Bridge",
+      title: "Multi-Network Route",
       description: "Low gas liquidity",
-      buttonText: "Route",
+      buttonText: "View Route",
       isPrimary: false,
       icon: <Target className="text-blue-400" />
     },
@@ -78,15 +78,15 @@ const ActionCenter: React.FC<ActionCenterProps> = ({ onAction }) => {
       id: "risk",
       title: "Wallet Shield",
       description: "Review safety",
-      buttonText: "Scan",
+      buttonText: "Start Optimization",
       isPrimary: false,
-      icon: <ShieldCheck className="text-red-400" />
+      icon: <ShieldCheck className="text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.4)]" />
     },
     {
       id: "planning",
       title: "Smart Plan",
       description: "Auto-saving sync",
-      buttonText: "Plan",
+      buttonText: "Create Plan",
       isPrimary: false,
       icon: <RefreshCw className="text-purple-400" />
     }

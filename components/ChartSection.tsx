@@ -82,10 +82,12 @@ const ChartSection: React.FC = () => {
       style={{ background: config.bg }}
     >
       {/* Chart Header */}
-      <div className="flex justify-between items-start mb-2 relative z-10">
+      <div className="flex justify-between items-start mb-1 relative z-10">
         <div>
           <h3 className="text-lg font-black text-white tracking-tight">{config.title}</h3>
-          <p className="text-[11px] text-gray-400 font-bold uppercase tracking-widest">{config.subtitle}</p>
+          <p className="text-[10px] text-[#bef264]/80 font-bold uppercase tracking-widest mt-0.5">
+            {activeChart === 'Fees' ? 'AI found a cheaper route with lower gas fees' : 'Settlement pathways optimized by FinoAI'}
+          </p>
         </div>
         
         <div className="flex flex-col items-end gap-2">

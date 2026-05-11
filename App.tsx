@@ -104,7 +104,7 @@ const App: React.FC = () => {
                 <Recommendations 
                   context={interestContext}
                   onAction={(id) => {
-                    if (id === 'smart-routing') {
+                    if (id === 'smart-routing' || id === 'solana-route') {
                       setInterestContext('transfer');
                       setCurrentView('transfer');
                     }
@@ -112,6 +112,18 @@ const App: React.FC = () => {
                     if (id === 'planning') setShowPlanningSheet(true);
                   }} 
                 />
+              </div>
+
+              {/* Trust Footer */}
+              <div className="pt-2 pb-6 text-center">
+                <p className="text-[10px] font-black text-gray-600 uppercase tracking-[0.2em]">
+                  Your funds remain in your wallet
+                </p>
+                <div className="flex justify-center items-center gap-1.5 mt-2 opacity-30">
+                  <div className="w-8 h-[1px] bg-gray-700"></div>
+                  <div className="w-1 h-1 rounded-full bg-gray-700"></div>
+                  <div className="w-8 h-[1px] bg-gray-700"></div>
+                </div>
               </div>
             </main>
           </>

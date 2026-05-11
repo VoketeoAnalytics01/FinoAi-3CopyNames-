@@ -10,9 +10,12 @@ const Header: React.FC = () => {
         <h1 className="text-2xl font-black tracking-tighter text-white leading-none">
           Fino<span className="text-[#bef264]">Ai</span>
         </h1>
-        <span className="text-[7.5px] font-black text-gray-500 uppercase tracking-[0.22em] mt-1.5 leading-none">
-          non-custodial platform
-        </span>
+        <div className="flex items-center gap-1.5 mt-1.5">
+          <div className="w-1 h-1 bg-[#bef264] rounded-full animate-pulse shadow-[0_0_5px_#bef264]"></div>
+          <span className="text-[7.5px] font-black text-[#bef264]/80 uppercase tracking-[0.22em] leading-none">
+            AI Optimizer Active
+          </span>
+        </div>
       </div>
 
       {/* Utility Section */}

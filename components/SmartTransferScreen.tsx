@@ -152,17 +152,24 @@ const SmartTransferScreen: React.FC<SmartTransferScreenProps> = ({ onBack }) => 
   return (
     <div className="flex flex-col min-h-screen bg-[#0B1120] text-white p-4 pb-28 overflow-y-auto no-scrollbar">
       {/* Header Area - Refined for Professional UI */}
-      <div className="flex items-start gap-4 mt-6 mb-8 px-1">
-        <button 
-          onClick={onBack} 
-          className="p-2.5 bg-white/5 border border-white/5 rounded-xl hover:bg-white/10 transition-all shrink-0 active:scale-95"
-          aria-label="Go back"
-        >
-          <ArrowLeft size={18} />
-        </button>
-        <div className="flex flex-col">
-          <h1 className="text-xl font-black tracking-tight uppercase italic leading-none text-white/90">Smart Routing</h1>
-          <p className="text-[11px] text-gray-500 font-bold mt-1.5 leading-tight">AI powered Optimal route for your assets</p>
+      <div className="flex items-start justify-between mt-4 mb-6 px-1">
+        <div className="flex items-start gap-4">
+          <button 
+            onClick={onBack} 
+            className="p-2.5 bg-white/5 border border-white/5 rounded-xl hover:bg-white/10 transition-all shrink-0 active:scale-95"
+            aria-label="Go back"
+          >
+            <ArrowLeft size={18} />
+          </button>
+          <div className="flex flex-col">
+            <h1 className="text-xl font-black tracking-tight uppercase italic leading-none text-white/90">Smart Routing</h1>
+            <p className="text-[10px] text-gray-500 font-bold mt-1.5 leading-tight uppercase tracking-widest">Decision Engine Active</p>
+          </div>
+        </div>
+        
+        <div className="flex items-center gap-2 bg-[#141d2e] px-3 py-1.5 rounded-full border border-[#bef264]/20 shadow-[0_0_15px_rgba(190,242,100,0.05)]">
+          <div className="w-1.5 h-1.5 bg-[#bef264] rounded-full animate-pulse shadow-[0_0_8px_#bef264]"></div>
+          <span className="text-[9px] font-black text-[#bef264] uppercase tracking-widest">AI Live</span>
         </div>
       </div>
 
@@ -251,6 +258,9 @@ const SmartTransferScreen: React.FC<SmartTransferScreenProps> = ({ onBack }) => 
                                 <span className="text-[9px] font-black text-[#bef264] uppercase">+ $1.10 saved</span>
                             </div>
                         </div>
+                        <p className="text-[9px] text-[#bef264]/60 font-bold uppercase tracking-wide mt-1 italic">
+                          AI selected the lowest-fee verified route based on live network congestion.
+                        </p>
                     </div>
                     <div className="p-3 bg-white/5 rounded-xl border border-white/5">
                         <ArrowRight size={20} className="text-blue-500" />
@@ -310,7 +320,12 @@ const SmartTransferScreen: React.FC<SmartTransferScreenProps> = ({ onBack }) => 
             {/* Horizontal Platform Cards - Preview Only 5 */}
             <div>
                 <div className="flex justify-between items-center mb-3 px-1">
-                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest text-[9px]">Available Platform</label>
+                    <div className="flex items-center gap-2">
+                      <label className="text-xs font-bold text-gray-400 uppercase tracking-widest text-[9px]">Recommended Routes</label>
+                      <div className="px-1.5 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-[7px] font-black text-blue-400 uppercase tracking-tighter">
+                        AI Confidence: High
+                      </div>
+                    </div>
                     <button 
                         onClick={() => setShowAllPlatforms(true)}
                         className="text-[9px] font-black text-[#bef264] uppercase tracking-widest flex items-center gap-1 hover:bg-[#bef264]/5 px-2 py-1 rounded-lg transition-colors"
@@ -328,7 +343,17 @@ const SmartTransferScreen: React.FC<SmartTransferScreenProps> = ({ onBack }) => 
                                 
                                 <div className="flex justify-between items-start mb-3 relative z-10">
                                     <div className="w-10 h-10 bg-white rounded-xl overflow-hidden flex items-center justify-center p-1.5 border border-white/10 group-hover/plat:shadow-[0_0_10px_rgba(255,255,255,0.1)] transition-all">
-                                        <img src={plat.logo} alt={plat.name} className="w-full h-full object-contain" />
+                                        <img 
+                                          src={plat.logo} 
+                                          alt={plat.name} 
+                                          className="w-full h-full object-contain" 
+                                          referrerPolicy="no-referrer"
+                                          onError={(e) => {
+                                            (e.target as HTMLImageElement).style.display = 'none';
+                                            (e.target as HTMLImageElement).parentElement!.classList.add('bg-[#1e293b]');
+                                            (e.target as HTMLImageElement).parentElement!.innerHTML = `<span class="text-[10px] font-black text-gray-500">${plat.name[0]}</span>`;
+                                          }}
+                                        />
                                     </div>
                                     <div className="flex flex-col items-end gap-1">
                                         {plat.feeChange === 'down' ? (
@@ -373,13 +398,13 @@ const SmartTransferScreen: React.FC<SmartTransferScreenProps> = ({ onBack }) => 
 
             {/* Speeds Selection */}
             <div>
-                <label className="text-[9px] font-bold text-gray-400 block mb-2 px-1 uppercase tracking-widest">Execution Speeds</label>
+                <label className="text-[9px] font-bold text-gray-400 block mb-2 px-1 uppercase tracking-widest">Optimization Goal</label>
                 <div className="flex gap-2">
-                    {['Cheaply', 'Balanced', 'Auto-AI'].map(s => (
+                    {['Lowest Cost', 'Balanced', 'Fastest', 'Auto AI'].map(s => (
                         <button 
                             key={s}
                             onClick={() => setSpeed(s)}
-                            className={`flex-1 py-2.5 rounded-xl text-[10px] font-black transition-all border ${speed === s ? 'bg-white/10 border-white/20 text-white' : 'bg-transparent border-gray-800 text-gray-500 hover:border-gray-700'}`}
+                            className={`flex-1 py-2.5 rounded-xl text-[9px] font-black transition-all border ${speed === s ? 'bg-[#bef264]/10 border-[#bef264]/30 text-[#bef264]' : 'bg-transparent border-gray-800 text-gray-500 hover:border-gray-700'}`}
                         >
                             {s}
                         </button>
@@ -389,7 +414,7 @@ const SmartTransferScreen: React.FC<SmartTransferScreenProps> = ({ onBack }) => 
         </div>
 
         <button className="w-full mt-10 bg-[#bef264] hover:bg-[#bef264]/90 text-black py-4.5 rounded-[24px] font-black text-xs shadow-xl active:scale-[0.98] transition-all flex items-center justify-center gap-3 uppercase tracking-[0.1em]">
-            Execute Route via FinoAi 
+            Review Best Route
             <div className="w-6 h-6 bg-black/10 rounded-full flex items-center justify-center">
               <ArrowRight size={16} />
             </div>
@@ -405,14 +430,14 @@ const SmartTransferScreen: React.FC<SmartTransferScreenProps> = ({ onBack }) => 
         </div>
 
         <div className="mb-8">
-            <h3 className="text-lg font-black uppercase tracking-tight italic">Routing Analysis</h3>
-            <div className="flex items-center gap-1.5 text-[#bef264]/80 mt-1">
+            <h3 className="text-lg font-black uppercase tracking-tight italic leading-none">Routing Analysis</h3>
+            <div className="flex items-center gap-1.5 text-[#bef264]/80 mt-2">
               <div className="w-1.5 h-1.5 rounded-full bg-[#bef264] animate-pulse"></div>
-              <p className="text-[9px] font-black uppercase tracking-widest">Non-Custodial • Verified</p>
+              <p className="text-[9px] font-black uppercase tracking-widest">Optimized for speed, cost, and reliability</p>
             </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-y-6 gap-x-6 mb-8">
+        <div className="grid grid-cols-2 gap-y-5 gap-x-6 mb-8">
             <div>
                 <p className="text-[9px] font-black text-gray-600 uppercase mb-1.5 tracking-widest">Platform</p>
                 <div className="flex items-center gap-2">
@@ -436,7 +461,21 @@ const SmartTransferScreen: React.FC<SmartTransferScreenProps> = ({ onBack }) => 
             </div>
             <div className="text-right">
                 <p className="text-[9px] font-black text-gray-600 uppercase mb-1.5 tracking-widest">Reliability</p>
-                <p className="text-sm font-black text-blue-400">99.8%</p>
+                <div className="flex items-center justify-end gap-1.5">
+                  <ShieldCheck size={10} className="text-blue-400" />
+                  <p className="text-sm font-black text-blue-400">99.8%</p>
+                </div>
+            </div>
+            <div>
+                <p className="text-[9px] font-black text-gray-600 uppercase mb-1.5 tracking-widest">Route Hops</p>
+                <div className="flex items-center gap-1.5">
+                    <Layers size={10} className="text-gray-400" />
+                    <p className="text-sm font-black text-white tracking-tight">1 Hop</p>
+                </div>
+            </div>
+            <div className="text-right">
+                <p className="text-[9px] font-black text-gray-600 uppercase mb-1.5 tracking-widest">Safety Score</p>
+                <p className="text-sm font-black text-[#bef264]">A+ Verfied</p>
             </div>
         </div>
 
@@ -511,7 +550,17 @@ const SmartTransferScreen: React.FC<SmartTransferScreenProps> = ({ onBack }) => 
                                             {idx + 1}
                                         </div>
                                         <div className="w-12 h-12 bg-white rounded-2xl overflow-hidden flex items-center justify-center p-2 border border-white/10 shrink-0">
-                                            <img src={plat.logo} alt={plat.name} className="w-full h-full object-contain" />
+                                            <img 
+                                              src={plat.logo} 
+                                              alt={plat.name} 
+                                              className="w-full h-full object-contain" 
+                                              referrerPolicy="no-referrer"
+                                              onError={(e) => {
+                                                (e.target as HTMLImageElement).style.display = 'none';
+                                                (e.target as HTMLImageElement).parentElement!.classList.add('bg-[#1e293b]');
+                                                (e.target as HTMLImageElement).parentElement!.innerHTML = `<span class="text-xs font-black text-white">${plat.name[0]}</span>`;
+                                              }}
+                                            />
                                         </div>
                                         <div className="flex flex-col justify-center min-w-0 pr-1">
                                             <h4 className="text-[13px] font-black text-white uppercase tracking-tight leading-none mb-1.5 truncate">
@@ -589,7 +638,14 @@ const SmartTransferScreen: React.FC<SmartTransferScreenProps> = ({ onBack }) => 
       )}
 
       {/* Footer Branding */}
-      <div className="mt-10 flex justify-end opacity-20">
+      <div className="mt-8 mb-4 text-center">
+        <p className="text-[10px] font-black text-gray-600 uppercase tracking-[0.2em] flex items-center justify-center gap-2">
+          <Shield size={10} className="text-[#bef264]" />
+          FinoAi never holds your assets
+        </p>
+      </div>
+
+      <div className="flex justify-end opacity-20">
         <div className="flex items-center gap-1.5">
             <div className="w-5 h-5 rounded-full border border-white flex items-center justify-center shadow-xl">
                 <Zap size={10} className="fill-white" />

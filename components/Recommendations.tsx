@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Compass, MoreHorizontal, AlertTriangle, Target, ChevronRight, Layers, Wallet, ShieldAlert, CalendarClock } from 'lucide-react';
+import { ChevronRight, Sparkles } from 'lucide-react';
 
 interface RecommendationCardProps {
   title: string;
@@ -60,45 +60,43 @@ interface RecommendationsProps {
 }
 
 const Recommendations: React.FC<RecommendationsProps> = ({ onAction, context = 'transfer' }) => {
-  const recommendations = [
-    {
-      id: "smart-routing",
-      title: "Smart Routing",
-      description: "AI Optimal: Chain-sync routing. Fees saved: $12.40.",
-      buttonText: "Execute",
-      icon: <Layers />,
-      accentColor: "text-blue-400",
-      glowClass: "bg-blue-500"
-    },
-    {
-      id: "risk",
-      title: "Risk & Safety",
-      description: "Scam shield active. Detected 1 suspicious wallet behavior.",
-      buttonText: "Scan Now",
-      icon: <ShieldAlert />,
-      accentColor: "text-red-400",
-      glowClass: "bg-red-500"
-    },
-    {
-      id: "planning",
-      title: "Smart Plan",
-      description: "Schedule recurring routing & get optimized fee alerts.",
-      buttonText: "Plan",
-      icon: <CalendarClock />,
-      accentColor: "text-orange-400",
-      glowClass: "bg-orange-500"
-    }
-  ];
+  const recommendation = {
+    id: "solana-route",
+    title: "AI Suggestion",
+    description: "Solana currently offers lower transfer costs & faster settlement.",
+    buttonText: "Review",
+    icon: <Sparkles />,
+    accentColor: "text-[#bef264]",
+    glowClass: "bg-[#bef264]"
+  };
 
   return (
-    <div className="flex gap-3 overflow-x-auto no-scrollbar pb-2 px-1 snap-x snap-mandatory">
-      {recommendations.map((rec, i) => (
-        <RecommendationCard 
-            key={i} 
-            {...rec} 
-            onClick={() => onAction && onAction(rec.id)}
-        />
-      ))}
+    <div className="px-1 snap-x snap-mandatory">
+      <div 
+        onClick={() => onAction && onAction(recommendation.id)}
+        className="w-full flex items-center justify-between bg-[#151c2c] border border-white/10 rounded-[28px] p-4 shadow-xl transition-all active:scale-[0.98] hover:bg-[#1a2335] group relative overflow-hidden cursor-pointer"
+      >
+        <div className="absolute -top-10 -right-10 w-24 h-24 bg-[#bef264]/5 blur-2xl rounded-full opacity-20"></div>
+        
+        <div className="flex items-center gap-4">
+          <div className="p-3 rounded-2xl bg-[#bef264]/10 border border-[#bef264]/20 text-[#bef264]">
+            <Sparkles size={20} />
+          </div>
+          <div>
+            <h4 className="text-[11px] font-black text-gray-500 tracking-widest uppercase leading-none mb-1.5">
+              {recommendation.title}
+            </h4>
+            <p className="text-[13px] font-black text-white tracking-tight leading-tight">
+              {recommendation.description}
+            </p>
+          </div>
+        </div>
+
+        <button className="px-4 py-2 rounded-xl bg-[#bef264] text-black font-black text-[10px] uppercase tracking-widest shadow-lg shadow-[#bef264]/10 flex items-center gap-1 shrink-0">
+          {recommendation.buttonText}
+          <ChevronRight size={12} strokeWidth={3} />
+        </button>
+      </div>
     </div>
   );
 };
