@@ -4,7 +4,7 @@ import { Crown, ShieldCheck } from 'lucide-react';
 
 const Header: React.FC = () => {
   return (
-    <header className="flex items-center justify-between px-5 pt-7 pb-5 sticky top-0 bg-[#0B1120]/95 backdrop-blur-2xl z-40 border-b border-white/5">
+            <header className="flex items-center justify-between px-4 pt-4 pb-2 sticky top-0 bg-[#0B1120]/95 backdrop-blur-2xl z-40 border-b border-white/5">
       {/* Brand Identity - Logo removed to fit content on mobile */}
       <div className="flex flex-col group cursor-pointer shrink-0">
         <h1 className="text-2xl font-black tracking-tighter text-white leading-none">

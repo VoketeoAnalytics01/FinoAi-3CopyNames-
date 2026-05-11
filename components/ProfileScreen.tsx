@@ -205,8 +205,8 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ theme, onThemeChange }) =
                 className="w-full h-full rounded-full object-cover border-2 border-[#151c2c]"
               />
             </div>
-            <div className={`absolute -bottom-1 -right-1 rounded-full p-1 border-2 border-[#151c2c] ${isPremium ? 'bg-amber-500' : 'bg-[#10b981]'}`}>
-              {isPremium ? <Crown size={10} className="text-white" /> : <CheckCircle2 size={10} className="text-white" />}
+            <div className={`absolute -bottom-1 -right-1 rounded-full p-1 border-2 border-[#151c2c] bg-[#10b981]`}>
+              <CheckCircle2 size={10} className="text-white" />
             </div>
           </div>
           <div>
@@ -222,14 +222,29 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ theme, onThemeChange }) =
             <div className="mt-2 flex items-center gap-1.5 bg-[#0B1120] px-3 py-1 rounded-full border border-gray-800">
                <CheckCircle2 size={10} className="text-[#bef264]" />
                <span className="text-[9px] font-black text-gray-400 uppercase tracking-wider">
-                 {isPremium ? 'Pro Verified' : 'Verified Identity'}
+                 Private Wallet Verified
                </span>
             </div>
           </div>
         </div>
         <div className="text-right relative z-10">
-          <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.15em] mb-1 text-white">Risk Profile</p>
-          <p className="text-xl font-black text-[#bef264] tracking-tight">Moderate</p>
+          <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.15em] mb-1">Status</p>
+          <p className="text-xl font-black text-[#bef264] tracking-tight">Protected</p>
+        </div>
+      </div>
+
+      {/* Non-Custodial Trust Block */}
+      <div className="bg-gradient-to-br from-blue-500/10 to-transparent border border-blue-500/20 rounded-[32px] p-6 mb-6 relative overflow-hidden">
+        <div className="flex items-start gap-4">
+          <div className="p-3 bg-blue-500/20 rounded-2xl text-blue-400">
+            <ShieldCheck size={24} />
+          </div>
+          <div>
+            <h3 className="text-sm font-black uppercase text-white tracking-tight mb-1">Non-Custodial Architecture</h3>
+            <p className="text-[11px] text-gray-400 font-bold leading-relaxed">
+              FinoAi never touches your private keys. You retain 100% control over your assets. We only provide optimal routing intelligence.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -240,12 +255,6 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ theme, onThemeChange }) =
             <Palette size={20} className="text-[#bef264]" />
             <h2 className="text-2xl font-black text-white tracking-tight uppercase">App Studio</h2>
           </div>
-          {!isPremium && (
-            <div className="flex items-center gap-1 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
-              <Lock size={10} className="text-amber-500" />
-              <span className="text-[8px] font-black text-amber-500 uppercase tracking-tighter">Premium Locked</span>
-            </div>
-          )}
         </div>
         
         <div className="bg-[#151c2c] border border-gray-800 rounded-[32px] p-6 shadow-xl relative overflow-hidden">
@@ -257,17 +266,12 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ theme, onThemeChange }) =
             {THEMES.map((t) => (
               <button
                 key={t.id}
-                onClick={() => handleThemeSelect(t.id, t.premium)}
-                className={`flex flex-col items-center gap-2 group shrink-0 transition-all ${t.premium && !isPremium ? 'opacity-50 grayscale' : 'opacity-100'}`}
+                onClick={() => handleThemeSelect(t.id, false)}
+                className={`flex flex-col items-center gap-2 group shrink-0 transition-all opacity-100`}
               >
                 <div className={`w-14 h-14 rounded-2xl border-2 p-1 transition-all flex items-center justify-center relative ${
                   theme === t.id ? 'border-[#bef264] scale-110 shadow-[0_0_15px_rgba(190,242,100,0.3)]' : 'border-white/10 group-hover:border-white/30'
                 }`} style={{ backgroundColor: t.color }}>
-                  {t.premium && (
-                    <div className="absolute -top-1.5 -right-1.5 bg-amber-500 rounded-full p-1 border-2 border-[#151c2c] shadow-lg">
-                      <Sparkles size={8} className="text-white" />
-                    </div>
-                  )}
                   {theme === t.id && (
                     <div className="w-2 h-2 bg-[#bef264] rounded-full shadow-[0_0_8px_#bef264]"></div>
                   )}
@@ -278,88 +282,27 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ theme, onThemeChange }) =
               </button>
             ))}
           </div>
-          
-          {isPremium ? (
-            <p className="mt-4 text-[9px] text-[#bef264]/60 font-black uppercase tracking-widest text-center">
-              Exclusive Pro themes unlocked ✨
-            </p>
-          ) : (
-            <button 
-              onClick={() => setIsPremium(true)} // Mocking upgrade
-              className="mt-6 w-full py-3 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center gap-2 hover:bg-white/10 transition-colors group"
-            >
-              <Lock size={12} className="text-amber-500 group-hover:scale-110 transition-transform" />
-              <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Upgrade to unlock Forest & Nebula</span>
-            </button>
-          )}
-        </div>
-      </div>
-
-      {/* Plans Comparison Grid */}
-      <div className="mb-6">
-        <div className="flex justify-between items-end mb-4 px-1">
-          <h2 className="text-2xl font-black text-white tracking-tight uppercase">Plans & Access</h2>
-          <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1">Upgrade Tiers</span>
-        </div>
-        
-        <div className="grid grid-cols-2 gap-4">
-          <ComparisonCard 
-            title="Free" 
-            price="$0" 
-            icon={Zap}
-            features={["Basic Routing", "Delay 5s", "Standard Risk"]}
-          />
-          <ComparisonCard 
-            title="Pro AI" 
-            price="$27" 
-            isPrimary={!isPremium} 
-            icon={Rocket}
-            features={["Instant Routing", "Priority Execution", "Exclusive Themes"]}
-            ctaLabel={isPremium ? "Active" : "Upgrade"}
-            onSelect={() => setIsPremium(true)}
-          />
-          <ComparisonCard 
-            title="Insti" 
-            price="$199" 
-            icon={Building2}
-            features={["API Access", "Custom Scripts", "Direct RPC"]}
-            ctaLabel="Get Started"
-          />
-          <ComparisonCard 
-            title="Ent" 
-            price="Custom" 
-            icon={Crown}
-            features={["SLA Guarantee", "White Label", "24/7 Support"]}
-            ctaLabel="Contact Sales"
-          />
         </div>
       </div>
 
       {/* Notification Preferences Section */}
       <div className="mb-6">
         <div className="flex justify-between items-end mb-4 px-1">
-          <h2 className="text-2xl font-black text-white tracking-tight uppercase">Notification Settings</h2>
-          <Bell size={18} className="text-gray-600 mb-1" />
+          <h2 className="text-2xl font-black text-white tracking-tight uppercase">Preferences</h2>
+          <Settings size={18} className="text-gray-600 mb-1" />
         </div>
         <div className="bg-[#151c2c] border border-gray-800 rounded-[32px] p-6 shadow-xl">
           <PreferenceItem 
             icon={Repeat} 
-            title="Best Transaction Routes" 
-            description="Alert when AI finds a cheaper or faster swap path."
+            title="Routing Intelligence" 
+            description="Alert when AI finds an optimal transfer path."
             enabled={prefs.routes}
             onChange={() => setPrefs(p => ({...p, routes: !p.routes}))}
           />
           <PreferenceItem 
-            icon={TrendingUp} 
-            title="Lending & Yield Alerts" 
-            description="Notify when new high-APR opportunities arise."
-            enabled={prefs.lending}
-            onChange={() => setPrefs(p => ({...p, lending: !p.lending}))}
-          />
-          <PreferenceItem 
             icon={ShieldAlert} 
-            title="Security & Risk Shield" 
-            description="Real-time alerts for suspicious protocol behavior."
+            title="Security Shield" 
+            description="Real-time alerts for suspicious behavior."
             enabled={prefs.security}
             onChange={() => setPrefs(p => ({...p, security: !p.security}))}
           />

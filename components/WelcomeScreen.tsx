@@ -130,36 +130,39 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onComplete }) => {
                 className="flex gap-4 px-4 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-smooth"
                 ref={carouselRef}
             >
-                {FEATURE_CARDS.map((card, i) => (
-                    <button
-                        key={card.id}
-                        onClick={onComplete}
-                        className={`min-w-[85%] snap-center relative p-8 rounded-[40px] border transition-all duration-700 text-left overflow-hidden active:scale-95 group ${
-                            activeCard === i 
-                                ? 'bg-[#151c2c] border-white/10 shadow-[0_30px_60px_-12px_rgba(0,0,0,0.5)] scale-100' 
-                                : 'bg-[#151c2c]/40 border-white/5 opacity-40 scale-90'
-                        }`}
-                    >
-                        {/* Glow Background */}
-                        <div className={`absolute -top-10 -right-10 w-32 h-32 blur-[60px] opacity-20 rounded-full ${card.glow}`}></div>
-                        
-                        <div className="mb-8">
-                            <card.icon />
-                        </div>
-
-                        <h3 className="text-xl font-black text-white mb-3 tracking-tight uppercase">{card.title}</h3>
-                        <p className="text-[13px] text-gray-400 font-bold leading-relaxed mb-6 h-12">
-                            {card.description}
-                        </p>
-                        
-                        <div className="flex justify-between items-center pt-4 border-t border-white/5">
-                            <span className="text-[10px] font-black text-gray-600 uppercase tracking-widest italic">{card.footer}</span>
-                            <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#bef264] group-hover:text-black transition-all">
-                                <ArrowRight size={14} strokeWidth={3} />
+                {FEATURE_CARDS.map((card, i) => {
+                    const FeatureIcon = card.icon;
+                    return (
+                        <button
+                            key={card.id}
+                            onClick={onComplete}
+                            className={`min-w-[85%] snap-center relative p-8 rounded-[40px] border transition-all duration-700 text-left overflow-hidden active:scale-95 group ${
+                                activeCard === i 
+                                    ? 'bg-[#151c2c] border-white/10 shadow-[0_30px_60px_-12px_rgba(0,0,0,0.5)] scale-100' 
+                                    : 'bg-[#151c2c]/40 border-white/5 opacity-40 scale-90'
+                            }`}
+                        >
+                            {/* Glow Background */}
+                            <div className={`absolute -top-10 -right-10 w-32 h-32 blur-[60px] opacity-20 rounded-full ${card.glow}`}></div>
+                            
+                            <div className="mb-8">
+                                <FeatureIcon />
                             </div>
-                        </div>
-                    </button>
-                ))}
+
+                            <h3 className="text-xl font-black text-white mb-3 tracking-tight uppercase">{card.title}</h3>
+                            <p className="text-[13px] text-gray-400 font-bold leading-relaxed mb-6 h-12">
+                                {card.description}
+                            </p>
+                            
+                            <div className="flex justify-between items-center pt-4 border-t border-white/5">
+                                <span className="text-[10px] font-black text-gray-600 uppercase tracking-widest italic">{card.footer}</span>
+                                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#bef264] group-hover:text-black transition-all">
+                                    <ArrowRight size={14} strokeWidth={3} />
+                                </div>
+                            </div>
+                        </button>
+                    );
+                })}
             </div>
         </div>
 

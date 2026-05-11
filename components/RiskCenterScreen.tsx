@@ -13,16 +13,16 @@ const RiskCenterScreen: React.FC = () => {
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
                 <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center">
-                    <ShieldCheck size={20} className="text-white" />
+                    <ShieldCheck size={20} className="text-[#bef264]" />
                 </div>
                 <div>
-                    <h1 className="text-lg font-bold">FinoAi</h1>
-                    <p className="text-[10px] text-gray-500 uppercase tracking-widest leading-none">non custodial</p>
+                    <h1 className="text-lg font-black leading-none">FinoAi</h1>
+                    <p className="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Non-Custodial Shield</p>
                 </div>
             </div>
           </div>
-          <button className="flex items-center gap-1 bg-white/5 px-3 py-1.5 rounded-full border border-white/10 text-xs font-bold active:scale-95 transition-transform uppercase tracking-tighter">
-            Header <ChevronRight size={14} />
+          <button className="flex items-center gap-1 bg-white/5 px-3 py-1.5 rounded-full border border-white/10 text-[10px] font-black active:scale-95 transition-transform uppercase tracking-wider text-gray-400">
+            Details <ChevronRight size={14} />
           </button>
         </div>
 
@@ -90,7 +90,7 @@ const RiskCenterScreen: React.FC = () => {
         {/* Suspicious Alerts Card */}
         <div className="bg-[#141d2e] border border-gray-800 p-4 rounded-2xl">
           <div className="flex justify-between items-center mb-3">
-            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Tital</span>
+            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Live Feed</span>
             <span className="text-[10px] text-[#3b82f6] font-bold">1/4</span>
           </div>
           <div className="mb-4">
@@ -113,7 +113,7 @@ const RiskCenterScreen: React.FC = () => {
           <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Swipe Carousel</span>
           <div className="flex items-center gap-2">
             <span className="text-[10px] text-[#3b82f6] font-bold">1/4</span>
-            <span className="text-[10px] text-gray-600 font-medium italic tracking-tighter">Auto-rote avey 6 seconds</span>
+            <span className="text-[10px] text-gray-600 font-medium italic tracking-tighter">Auto-rotate every 6 seconds</span>
           </div>
         </div>
         

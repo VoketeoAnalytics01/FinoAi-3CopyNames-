@@ -23,7 +23,7 @@ const RecommendationCard: React.FC<RecommendationCardProps> = ({
 }) => (
   <button 
     onClick={onClick}
-    className="min-w-[165px] h-[155px] bg-[#151c2c] border border-white/10 rounded-[24px] p-4 flex flex-col justify-between shadow-xl snap-center transition-all active:scale-[0.97] hover:bg-[#1a2335] group relative overflow-hidden text-left"
+    className="min-w-[160px] h-[135px] bg-[#151c2c] border border-white/10 rounded-[22px] p-3 flex flex-col justify-between shadow-xl snap-center transition-all active:scale-[0.97] hover:bg-[#1a2335] group relative overflow-hidden text-left"
   >
     {/* Atmospheric Accent Glow */}
     <div className={`absolute -top-10 -right-10 w-20 h-20 blur-2xl rounded-full opacity-10 ${glowClass}`}></div>
@@ -56,7 +56,7 @@ const RecommendationCard: React.FC<RecommendationCardProps> = ({
 
 interface RecommendationsProps {
   onAction?: (id: string) => void;
-  context?: 'transfer' | 'lending';
+  context?: 'transfer' | 'risk';
 }
 
 const Recommendations: React.FC<RecommendationsProps> = ({ onAction, context = 'transfer' }) => {
@@ -64,25 +64,16 @@ const Recommendations: React.FC<RecommendationsProps> = ({ onAction, context = '
     {
       id: "smart-routing",
       title: "Smart Routing",
-      description: "Best: USDT→KES via Binance. Safety: 99.8% (US).",
+      description: "AI Optimal: Chain-sync routing. Fees saved: $12.40.",
       buttonText: "Execute",
       icon: <Layers />,
       accentColor: "text-blue-400",
       glowClass: "bg-blue-500"
     },
     {
-      id: "lending",
-      title: "Lending & Borrowing Hub",
-      description: "Rec: Aave V3 (99% Safe). Borrow: Compound (Save $12 fees).",
-      buttonText: "Explore",
-      icon: <Wallet />,
-      accentColor: "text-emerald-400",
-      glowClass: "bg-emerald-500"
-    },
-    {
       id: "risk",
       title: "Risk & Safety",
-      description: "AI identified 3 rug-pull wallets, 1 fake platform & unsafe routes. Tap to secure.",
+      description: "Scam shield active. Detected 1 suspicious wallet behavior.",
       buttonText: "Scan Now",
       icon: <ShieldAlert />,
       accentColor: "text-red-400",
@@ -90,10 +81,8 @@ const Recommendations: React.FC<RecommendationsProps> = ({ onAction, context = '
     },
     {
       id: "planning",
-      title: context === 'transfer' ? "Routing Plans" : "Lend & Borrow Plans",
-      description: context === 'transfer' 
-        ? "Schedule recurring transfers & get optimized routing alerts."
-        : "Plan your debt repayment or schedule automated lending.",
+      title: "Smart Plan",
+      description: "Schedule recurring routing & get optimized fee alerts.",
       buttonText: "Plan",
       icon: <CalendarClock />,
       accentColor: "text-orange-400",

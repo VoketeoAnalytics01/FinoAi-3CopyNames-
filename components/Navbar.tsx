@@ -14,13 +14,13 @@ const Navbar: React.FC<NavbarProps> = ({ activeNav, onNavChange }) => {
       <nav className="bg-[#0B1120] border-t border-white/5 px-2 py-3 shadow-2xl">
         <div className="flex justify-around items-end h-14">
           {NAV_ITEMS.map((item) => {
-            const isActive = activeNav === (item.id === 'Tools' ? 'Smart Tools' : item.id);
+            const isActive = activeNav === item.id;
             const Icon = item.icon;
             
             return (
               <button
                 key={item.id}
-                onClick={() => onNavChange((item.id === 'Tools' ? 'Smart Tools' : item.id) as NavItem)}
+                onClick={() => onNavChange(item.id as NavItem)}
                 className="flex flex-col items-center justify-center gap-1.5 flex-1 group transition-colors duration-200"
               >
                 <div className={`${isActive ? 'text-[#bef264]' : 'text-slate-400'}`}>

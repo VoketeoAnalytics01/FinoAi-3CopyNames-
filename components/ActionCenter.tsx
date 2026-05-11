@@ -8,10 +8,14 @@ interface ActionCardProps {
   buttonText: string;
   isPrimary?: boolean;
   icon: React.ReactNode;
+  onClick?: () => void;
 }
 
-const ActionCard: React.FC<ActionCardProps> = ({ title, description, buttonText, isPrimary, icon }) => (
-  <div className="min-w-[165px] h-[155px] bg-[#151c2c] border border-white/10 rounded-[24px] p-4 flex flex-col justify-between shadow-xl snap-center transition-all active:scale-[0.97] hover:bg-[#1a2335] group relative overflow-hidden">
+const ActionCard: React.FC<ActionCardProps> = ({ title, description, buttonText, isPrimary, icon, onClick }) => (
+  <div 
+    onClick={onClick}
+    className="min-w-[160px] h-[135px] bg-[#151c2c] border border-white/10 rounded-[22px] p-3 flex flex-col justify-between shadow-xl snap-center transition-all active:scale-[0.97] hover:bg-[#1a2335] group relative overflow-hidden cursor-pointer"
+  >
     {/* Subtle Glow for Primary */}
     {isPrimary && (
       <div className="absolute -top-10 -right-10 w-20 h-20 bg-[#bef264]/5 blur-2xl rounded-full"></div>
@@ -48,42 +52,54 @@ const ActionCard: React.FC<ActionCardProps> = ({ title, description, buttonText,
   </div>
 );
 
-const ActionCenter: React.FC = () => {
+interface ActionCenterProps {
+  onAction?: (action: string) => void;
+}
+
+const ActionCenter: React.FC<ActionCenterProps> = ({ onAction }) => {
   const actions = [
     {
-      title: "Optimize Yield",
-      description: "Boost APR now",
-      buttonText: "Preview",
+      id: "fees",
+      title: "Fee Optimization",
+      description: "AI reduction sync",
+      buttonText: "Execute",
       isPrimary: true,
       icon: <Zap className="text-[#bef264]" />
     },
     {
-      title: "Reduce Fees",
-      description: "Save on swaps",
-      buttonText: "Apply",
+      id: "transfer",
+      title: "Route Bridge",
+      description: "Low gas liquidity",
+      buttonText: "Route",
       isPrimary: false,
       icon: <Target className="text-blue-400" />
     },
     {
-      title: "Rebalance",
-      description: "Mitigate risk",
-      buttonText: "View",
-      isPrimary: false,
-      icon: <RefreshCw className="text-purple-400" />
-    },
-    {
-      title: "Secure Assets",
+      id: "risk",
+      title: "Wallet Shield",
       description: "Review safety",
       buttonText: "Scan",
       isPrimary: false,
       icon: <ShieldCheck className="text-red-400" />
+    },
+    {
+      id: "planning",
+      title: "Smart Plan",
+      description: "Auto-saving sync",
+      buttonText: "Plan",
+      isPrimary: false,
+      icon: <RefreshCw className="text-purple-400" />
     }
   ];
 
   return (
     <div className="flex gap-3 overflow-x-auto no-scrollbar pb-2 px-1 snap-x snap-mandatory">
       {actions.map((action, i) => (
-        <ActionCard key={i} {...action} />
+        <ActionCard 
+          key={i} 
+          {...action} 
+          onClick={() => onAction && onAction(action.id)}
+        />
       ))}
     </div>
   );

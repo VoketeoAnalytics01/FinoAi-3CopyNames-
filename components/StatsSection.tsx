@@ -13,7 +13,7 @@ interface StatCardProps {
 const StatCard: React.FC<StatCardProps> = ({ label, value, icon: Icon, onClick, className }) => (
   <button 
     onClick={onClick}
-    className={`relative group bg-[#151c2c] border border-white/5 rounded-[24px] p-4 flex flex-col items-start justify-between min-h-[100px] flex-1 transition-all duration-300 active:scale-[0.96] hover:bg-white/[0.03] overflow-hidden shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] ${className}`}
+    className={`relative group bg-[#151c2c] border border-white/5 rounded-[24px] p-3 flex flex-col items-start justify-between min-h-[85px] flex-1 transition-all duration-300 active:scale-[0.96] hover:bg-white/[0.03] overflow-hidden shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] ${className}`}
   >
     {/* Background Decorative Glow */}
     <div className="absolute -top-4 -right-4 w-12 h-12 bg-[#bef264]/5 blur-2xl group-active:bg-[#bef264]/10 transition-colors"></div>
@@ -53,22 +53,23 @@ const StatsSection: React.FC<StatsSectionProps> = ({ onStatClick }) => {
   return (
     <div className="flex gap-3 w-full px-1">
       <StatCard 
-        label="AI Yield APR" 
-        value="6.8" 
-        icon={TrendingUp} 
-        onClick={() => onStatClick('yield')} 
-      />
-      <StatCard 
-        label="Smart Lending" 
-        value="$210" 
-        icon={Wallet} 
-        onClick={() => onStatClick('lending')} 
-      />
-      <StatCard 
         label="AI Fee Saved" 
-        value="$14" 
+        value="$54.20" 
         icon={Sparkles} 
         onClick={() => onStatClick('fees')} 
+      />
+      <StatCard 
+        label="Risk Score" 
+        value="Safe" 
+        className="text-[#bef264]"
+        icon={TrendingUp} 
+        onClick={() => {}} 
+      />
+      <StatCard 
+        label="Protection" 
+        value="Active" 
+        icon={Wallet} 
+        onClick={() => {}} 
       />
     </div>
   );

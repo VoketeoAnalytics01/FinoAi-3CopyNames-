@@ -1,10 +1,10 @@
 
-import { Home, LayoutGrid, FileText, Square, User } from 'lucide-react';
+import { Home, Zap, ShieldCheck, User } from 'lucide-react';
 
 export const NAV_ITEMS = [
   { id: 'Home', label: 'Home', icon: Home },
-  { id: 'Risk Center', label: 'Risk Center', icon: FileText },
-  { id: 'Smart Tools', label: 'Tools', icon: Square },
+  { id: 'Smart Routing', label: 'Routing', icon: Zap },
+  { id: 'Risk Center', label: 'Risk', icon: ShieldCheck },
   { id: 'Profile', label: 'Profile', icon: User },
 ];
 
