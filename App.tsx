@@ -41,7 +41,7 @@ const App: React.FC = () => {
       case 'forest': return 'bg-[#052e16] text-emerald-50';
       case 'nebula': return 'bg-[#1e1b4b] text-indigo-50';
       case 'dark':
-      default: return 'bg-[#0B1120] text-slate-100';
+      default: return 'bg-gradient-to-b from-[#0B1120] via-[#0B1120] to-[#010409] text-slate-100';
     }
   };
 

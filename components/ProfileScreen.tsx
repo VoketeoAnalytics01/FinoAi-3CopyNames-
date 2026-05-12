@@ -32,9 +32,9 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ theme, onThemeChange }) =
   const [isPremium] = useState(true);
 
   return (
-    <div className="flex flex-col min-h-screen bg-transparent p-4 pb-28 overflow-y-auto no-scrollbar">
+    <div className="flex flex-col min-h-screen bg-transparent p-4 pb-28 overflow-y-auto no-scrollbar scroll-smooth">
       {/* 1. TOP HEADER SECTION */}
-      <header className="flex justify-between items-center mt-4 mb-8 px-1">
+      <header className="flex justify-between items-center mt-2 mb-8 px-1">
         <div className="flex flex-col">
           <h1 className="text-2xl font-black tracking-tighter text-white leading-none">
             Fino<span className="text-[#bef264]">Ai</span>
@@ -59,25 +59,22 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ theme, onThemeChange }) =
       </header>
 
       {/* Title & Subtitle */}
-      <div className="px-1 mb-8">
+      <div className="px-1 mb-6">
         <h2 className="text-3xl font-black text-white tracking-tight leading-none mb-2">Profile</h2>
         <p className="text-sm font-medium text-gray-400">Your AI-powered financial identity</p>
       </div>
 
       {/* 2. PROFILE IDENTITY CARD */}
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         className="relative group mb-8"
       >
-        {/* Animated Background Glow */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#bef264]/10 via-cyan-500/10 to-[#bef264]/10 blur-3xl opacity-50 group-hover:opacity-70 transition-opacity"></div>
-        
-        <div className="relative bg-[#151c2c]/80 backdrop-blur-xl border border-white/10 p-6 rounded-[32px] shadow-2xl overflow-hidden">
+        <div className="relative bg-[#141d2e] border border-white/5 p-6 rounded-[28px] shadow-2xl overflow-hidden">
           <div className="flex justify-between items-start mb-6">
             <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#bef264] to-cyan-500 p-0.5 shadow-lg">
-                <div className="w-full h-full bg-[#151c2c] rounded-[14px] flex items-center justify-center p-0.5">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#bef264]/20 to-cyan-500/20 p-0.5">
+                <div className="w-full h-full bg-[#0B1120] rounded-[14px] flex items-center justify-center p-0.5 overflow-hidden">
                     <img 
                       src="https://api.dicebear.com/7.x/avataaars/svg?seed=Kevin" 
                       alt="Avatar" 
@@ -85,120 +82,121 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ theme, onThemeChange }) =
                     />
                 </div>
               </div>
-              <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <h3 className="text-xl font-black text-white tracking-tight">{userName}</h3>
-                  <div className="bg-[#bef264] p-0.5 rounded-full shadow-[0_0_10px_#bef264]">
-                    <CheckCircle2 size={12} className="text-black" />
+              <div className="flex flex-col gap-1.5">
+                <div className="flex items-center gap-2">
+                  <h3 className="text-xl font-black text-white tracking-tight leading-none">{userName}</h3>
+                  <div className="bg-[#bef264] p-0.5 rounded-full">
+                    <CheckCircle2 size={10} className="text-black" />
                   </div>
                 </div>
-                {isPremium && (
-                  <div className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-gradient-to-r from-amber-400/20 to-amber-600/20 border border-amber-400/30 rounded-full">
-                    <Crown size={10} className="text-amber-400" />
-                    <span className="text-[10px] font-black text-amber-400 uppercase tracking-widest">Premium</span>
+                <div className="flex items-center gap-2">
+                  {isPremium && (
+                    <div className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-amber-400/10 border border-amber-400/20 rounded-lg">
+                      <Crown size={8} className="text-amber-400" />
+                      <span className="text-[8px] font-black text-amber-400 uppercase tracking-widest leading-none">Premium</span>
+                    </div>
+                  )}
+                  <div className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-purple-500/10 border border-purple-500/20 rounded-lg">
+                    <Cpu size={8} className="text-purple-400" />
+                    <span className="text-[8px] font-black text-purple-400 uppercase tracking-widest leading-none">Auto AI Active</span>
                   </div>
-                )}
+                </div>
               </div>
             </div>
             
             <div className="flex flex-col items-end">
-              <div className="flex items-center gap-1.5 mb-1">
-                <div className="w-1 h-1 bg-[#bef264] rounded-full animate-ping"></div>
-                <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Safety Score</span>
+              <p className="text-[8px] font-black text-gray-500 uppercase tracking-widest mb-1">Safety Status</p>
+              <div className="flex items-center gap-1.5">
+                <div className="w-1.5 h-1.5 bg-[#bef264] rounded-full shadow-[0_0_5px_#bef264]"></div>
+                <span className="text-xs font-black text-[#bef264] uppercase tracking-tighter">High Tier</span>
               </div>
-              <span className="text-sm font-black text-[#bef264]">High</span>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 py-2 px-3 bg-white/5 border border-white/5 rounded-2xl mb-6">
+          <div className="flex items-center gap-2.5 py-2.5 px-3.5 bg-white/5 border border-white/5 rounded-2xl mb-6">
             <ShieldCheck size={14} className="text-cyan-400" />
-            <span className="text-[10px] font-bold text-gray-400 italic">You control your assets at all times</span>
+            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Non-Custodial Account Verified</span>
           </div>
 
-          <div className="pt-4 border-t border-white/5 flex items-center gap-3">
-            <Sparkles size={16} className="text-[#bef264]" />
-            <p className="text-[11px] font-medium text-gray-300 leading-tight">
-              AI optimization saved you <span className="text-[#bef264] font-black">$54.20</span> this week.
-            </p>
+          <div className="pt-4 border-t border-white/5 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Sparkles size={16} className="text-[#bef264]" />
+              <p className="text-[11px] font-medium text-gray-300 leading-tight">
+                AI optimization saved <span className="text-[#bef264] font-black">$54.20</span> this week
+              </p>
+            </div>
+            <ChevronRight size={14} className="text-gray-700" />
           </div>
         </div>
       </motion.div>
 
       {/* 3. QUICK ACCOUNT STATUS SECTION */}
-      <div className="grid grid-cols-3 gap-3 mb-8 px-1">
+      <div className="grid grid-cols-2 gap-3 mb-10 px-1">
         {[
-          { icon: Wallet, title: 'Wallet', val: 'Connected', color: 'text-cyan-400', bg: 'bg-cyan-400/10' },
-          { icon: ShieldCheck, title: 'Security', val: 'Active', color: 'text-[#bef264]', bg: 'bg-[#bef264]/10' },
-          { icon: Cpu, title: 'AI Mode', val: 'Auto AI', color: 'text-purple-400', bg: 'bg-purple-400/10' }
+          { icon: Wallet, title: 'Wallet Account', val: 'Active Connection', color: 'text-cyan-400', bg: 'bg-cyan-400/10' },
+          { icon: ShieldCheck, title: 'Security Protocol', val: 'Safe & Verified', color: 'text-[#bef264]', bg: 'bg-[#bef264]/10' }
         ].map((item, i) => (
-          <div key={i} className="bg-[#151c2c] border border-white/10 rounded-3xl p-4 flex flex-col items-center gap-2 group hover:bg-[#1a2335] transition-colors">
-            <div className={`p-2 rounded-2xl ${item.bg} ${item.color}`}>
+          <div key={i} className="bg-[#141d2e] border border-white/5 rounded-3xl p-4 flex flex-col items-center gap-2 transition-all">
+            <div className={`p-2.5 rounded-2xl ${item.bg} ${item.color}`}>
               <item.icon size={18} />
             </div>
             <div className="text-center">
-              <p className="text-[9px] font-black text-gray-500 uppercase tracking-widest mb-0.5">{item.title}</p>
-              <p className={`text-[11px] font-black ${item.color}`}>{item.val}</p>
+              <p className="text-[9px] font-black text-gray-500 uppercase tracking-widest mb-1 leading-none">{item.title}</p>
+              <p className={`text-[11px] font-black ${item.color} leading-none truncate`}>{item.val}</p>
             </div>
           </div>
         ))}
       </div>
 
       {/* 4. CONNECTED ACCOUNTS SECTION */}
-      <div className="space-y-4 mb-8">
-        <h4 className="text-[11px] font-black text-gray-500 uppercase tracking-[0.25em] px-2 mb-2">Connected Accounts</h4>
-        <div className="bg-[#151c2c] border border-white/10 rounded-[32px] overflow-hidden">
+      <div className="space-y-3 mb-10">
+        <div className="flex items-center justify-between px-2 mb-2">
+          <h4 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.25em]">Connected Accounts</h4>
+          <div className="w-1 h-1 rounded-full bg-gray-700"></div>
+        </div>
+        <div className="bg-[#141d2e] border border-white/5 rounded-[24px] overflow-hidden list-none">
           {[
-            { icon: Globe, label: 'WalletConnect', status: 'Connected', statusColor: 'bg-[#bef264]/20 text-[#bef264]' },
-            { icon: ArrowRightLeft, label: 'Exchange API', status: 'Read-only', statusColor: 'bg-cyan-500/20 text-cyan-400' },
-            { icon: Building2, label: 'Bank Connection', status: 'Optional', statusColor: 'bg-gray-800 text-gray-500' }
+            { icon: Globe, label: 'WalletConnect', status: 'Connected', statusColor: 'bg-[#bef264]/10 text-[#bef264]' },
+            { icon: ArrowRightLeft, label: 'Exchange API', status: 'Read-only', statusColor: 'bg-cyan-500/10 text-cyan-400' }
           ].map((acc, i) => (
-            <div key={i} className="flex items-center justify-between p-4 hover:bg-white/5 transition-colors border-b border-white/5 last:border-0 group cursor-pointer">
-              <div className="flex items-center gap-4">
-                <div className="p-2.5 bg-white/5 rounded-2xl text-gray-400 group-hover:text-white transition-colors">
-                  <acc.icon size={20} />
-                </div>
-                <div>
-                  <h5 className="text-[13px] font-black text-white tracking-tight">{acc.label}</h5>
-                </div>
-              </div>
+            <div key={i} className="flex items-center justify-between p-4 bg-transparent hover:bg-white/[0.02] transition-colors border-b border-white/5 last:border-0 group cursor-pointer">
               <div className="flex items-center gap-3">
-                <span className={`text-[9px] font-black px-2 py-1 rounded-full uppercase tracking-tighter ${acc.statusColor}`}>
+                <div className="p-2.5 bg-white/5 rounded-xl text-gray-400">
+                  <acc.icon size={18} />
+                </div>
+                <h5 className="text-[13px] font-black text-white tracking-tight">{acc.label}</h5>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className={`text-[8px] font-black px-2 py-1 rounded-lg uppercase tracking-tight ${acc.statusColor}`}>
                   {acc.status}
                 </span>
-                <ChevronRight size={14} className="text-gray-600" />
+                <ChevronRight size={14} className="text-gray-700 group-hover:text-gray-400 transition-colors" />
               </div>
             </div>
           ))}
         </div>
-        <p className="text-[10px] text-center text-gray-600 font-bold italic">
-          “FinoAi never holds or moves your funds.”
+        <p className="text-[10px] text-center text-gray-600 font-bold italic mt-2">
+          “FinoAi decision engine maintains non-custodial link”
         </p>
       </div>
 
       {/* 5. AI PREFERENCES SECTION */}
-      <div className="space-y-4 mb-8">
-        <h4 className="text-[11px] font-black text-gray-500 uppercase tracking-[0.25em] px-2 mb-2">AI Preferences</h4>
-        <div className="bg-[#151c2c] border border-white/10 rounded-[32px] p-2">
+      <div className="space-y-3 mb-10">
+        <div className="flex items-center justify-between px-2 mb-2">
+          <h4 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.25em]">AI Preferences</h4>
+          <div className="w-1 h-1 rounded-full bg-gray-700"></div>
+        </div>
+        <div className="bg-[#141d2e] border border-white/5 rounded-[24px] p-1 shadow-sm">
           {[
-            { label: 'Optimization Goal', val: 'Lowest Cost', type: 'select' },
-            { label: 'Default Network', val: 'Solana (Auto)', type: 'select' },
-            { label: 'Risk Preference', val: 'Balanced', type: 'select' },
-            { label: 'AI Automation', val: true, type: 'toggle' },
-            { label: 'Notifications', val: true, type: 'toggle' }
+            { label: 'Optimization Goal', val: 'Lowest Cost' },
+            { label: 'Default Network', val: 'Solana (Auto)' },
+            { label: 'Risk Preference', val: 'Balanced' }
           ].map((pref, i) => (
-            <div key={i} className="flex items-center justify-between p-4 hover:bg-white/5 transition-colors border-b border-white/5 last:border-0 group cursor-pointer">
-              <span className="text-[13px] font-black text-white/80 tracking-tight">{pref.label}</span>
-              <div className="flex items-center gap-2">
-                {pref.type === 'select' ? (
-                  <div className="flex items-center gap-1 bg-white/5 px-3 py-1.5 rounded-xl border border-white/5">
-                    <span className="text-[11px] font-black text-[#bef264]">{pref.val}</span>
-                    <ChevronRight size={12} className="text-gray-600 rotate-90" />
-                  </div>
-                ) : (
-                  <div className={`w-10 h-5 rounded-full p-1 transition-colors ${pref.val ? 'bg-[#bef264]' : 'bg-gray-800'}`}>
-                    <div className={`w-3 h-3 bg-white rounded-full transition-transform ${pref.val ? 'translate-x-5' : 'translate-x-0'}`}></div>
-                  </div>
-                )}
+            <div key={i} className="flex items-center justify-between p-4 bg-transparent border-b border-white/5 last:border-0 group cursor-pointer hover:bg-white/[0.02] transition-colors rounded-xl mx-0">
+              <span className="text-[13px] font-bold text-white/80 tracking-tight">{pref.label}</span>
+              <div className="flex items-center gap-2 bg-white/5 px-2.5 py-1.5 rounded-xl border border-white/5 group-hover:border-[#bef264]/20 transition-all">
+                <span className="text-[10px] font-black text-[#bef264] uppercase">{pref.val}</span>
+                <ChevronRight size={12} className="text-gray-700 rotate-90" />
               </div>
             </div>
           ))}
@@ -206,26 +204,26 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ theme, onThemeChange }) =
       </div>
 
       {/* 6. TRUST & SECURITY CARD */}
-      <div className="bg-gradient-to-br from-cyan-500/10 to-transparent border border-cyan-500/20 p-6 rounded-[32px] mb-8 relative overflow-hidden">
-        <div className="absolute top-0 right-0 p-4 opacity-10">
-          <Shield size={64} className="text-cyan-400" />
+      <div className="bg-[#141d2e] border border-[#bef264]/10 p-6 rounded-[28px] mb-10 shadow-xl overflow-hidden relative">
+        <div className="absolute -right-6 -top-6 opacity-5 rotate-12">
+            <Shield size={100} className="text-[#bef264]" />
         </div>
-        <div className="flex items-center gap-3 mb-4">
-          <div className="p-2.5 bg-cyan-500/20 rounded-2xl text-cyan-400 shadow-[0_0_15px_#22d3ee20]">
-            <Lock size={20} />
+        <div className="flex items-center gap-3 mb-5">
+          <div className="p-2.5 bg-[#bef264]/10 rounded-2xl text-[#bef264]">
+            <Lock size={18} />
           </div>
-          <h3 className="text-lg font-black text-white tracking-tight lowercase">Security & Privacy</h3>
+          <h3 className="text-base font-black text-white tracking-tight leading-none uppercase italic">Security & Privacy</h3>
         </div>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-4">
           {[
-            'Non-custodial verified',
-            'Encrypted AI routing',
-            'Read-only permissions',
-            'Scam protection'
+            'Non-Custodial',
+            'Encrypted Ops',
+            'Read-Only API',
+            'Scam Shield'
           ].map((item, i) => (
             <div key={i} className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-cyan-400/50"></div>
-              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-tight">{item}</span>
+              <div className="w-1.5 h-1.5 rounded-full bg-[#bef264]/40"></div>
+              <span className="text-[10px] font-black text-gray-400 uppercase tracking-tight">{item}</span>
             </div>
           ))}
         </div>
