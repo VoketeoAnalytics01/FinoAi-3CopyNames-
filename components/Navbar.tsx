@@ -23,8 +23,11 @@ const Navbar: React.FC<NavbarProps> = ({ activeNav, onNavChange }) => {
                 onClick={() => onNavChange(item.id as NavItem)}
                 className="flex flex-col items-center justify-center gap-1.5 flex-1 group transition-colors duration-200"
               >
-                <div className={`${isActive ? 'text-[#bef264]' : 'text-slate-400'}`}>
-                  <Icon size={24} strokeWidth={isActive ? 2.5 : 2} />
+                <div className={`relative ${isActive ? 'text-[#bef264]' : 'text-slate-400'}`}>
+                  {isActive && (
+                    <div className="absolute inset-0 bg-[#bef264]/20 blur-[8px] rounded-full scale-150"></div>
+                  )}
+                  <Icon size={24} strokeWidth={isActive ? 2.5 : 2} className="relative z-10" />
                 </div>
                 <span className={`text-[11px] font-medium leading-none ${
                   isActive ? 'text-[#bef264]' : 'text-slate-400'
